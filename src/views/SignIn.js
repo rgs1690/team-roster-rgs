@@ -6,7 +6,7 @@ export default function SignIn({ user }) {
   return (
     <>
       {user === null ? (
-        'Loading'
+        'Loading...'
       ) : (
         <div className="text-center mt-5">
           <h1>Welcome! Sign In!</h1>

@@ -1,4 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import {
+  Card, CardImg, CardBody, CardTitle, CardSubtitle,
+} from 'reactstrap';
 import { getAllPlayers } from '../api/data/playersData';
 
 export default function Team() {
@@ -15,7 +18,22 @@ export default function Team() {
   return (
     <div>
       {players.map((player) => (
-        <h1 key={player.name}> {player.name}</h1>
+        <div>
+          <Card>
+            <CardImg
+              top
+              width="75%"
+              src={player.imageUrl}
+              alt="Card image cap"
+            />
+            <CardBody>
+              <CardTitle tag="h5">{player.name}</CardTitle>
+              <CardSubtitle tag="h6" className="mb-2 text-muted">
+                {player.position}
+              </CardSubtitle>
+            </CardBody>
+          </Card>
+        </div>
       ))}
     </div>
   );
