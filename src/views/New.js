@@ -3,7 +3,7 @@ import React from 'react';
 export default function New() {
   return (
     <div>
-      <h1>TEAM</h1>
+      <h1>Add a player</h1>
     </div>
   );
 }
