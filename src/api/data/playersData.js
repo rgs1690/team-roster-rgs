@@ -12,11 +12,11 @@ const getAllPlayers = () => new Promise((resolve, reject) => {
 
 const createPlayer = (obj) => new Promise((resolve, reject) => {
   axios
-    .post(`${baseURL}/todos.json`, obj)
+    .post(`${baseURL}/players.json`, obj)
     .then((response) => {
       const firebaseKey = response.data.name;
       axios
-        .patch(`${baseURL}/todos/${firebaseKey}.json`, { firebaseKey })
+        .patch(`${baseURL}/players/${firebaseKey}.json`, { firebaseKey })
         .then(() => {
           getAllPlayers().then(resolve);
         });

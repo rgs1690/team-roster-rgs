@@ -7,7 +7,7 @@ const initialState = {
   name: '',
   position: '',
 };
-export default function NewPlayerForm({ obj }) {
+export default function NewPlayerForm({ obj = {}, setPlayers, setEditItem }) {
   const [formInput, setFormInput] = useState({
     name: obj.name || '',
     imageUrl: obj.imageUrl || '',
@@ -32,10 +32,12 @@ export default function NewPlayerForm({ obj }) {
   //   }, [obj]);
   const resetForm = () => {
     setFormInput({ ...initialState });
+    setEditItem({});
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    createPlayer(formInput).then(() => {
+    createPlayer(formInput).then((players) => {
+      setPlayers(players);
       resetForm();
     });
   };
@@ -101,7 +103,7 @@ NewPlayerForm.propTypes = {
     position: PropTypes.string,
     uid: PropTypes.string,
   }),
-  //   setPlayers: PropTypes.func.isRequired,
-  //   setEditItem: PropTypes.func.isRequired,
+  setPlayers: PropTypes.func.isRequired,
+  setEditItem: PropTypes.func.isRequired,
 };
 NewPlayerForm.defaultProps = { obj: {} };
