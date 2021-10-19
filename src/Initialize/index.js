@@ -7,6 +7,9 @@ import Routes from '../routes';
 
 function Initialize() {
   const [user, setUser] = useState(null);
+  const [players, setPlayers] = useState([]);
+  const [editItem, setEditItem] = useState({});
+
   useEffect(() => {
     firebase.auth().onAuthStateChanged((authed) => {
       if (authed) {
@@ -28,7 +31,13 @@ function Initialize() {
       {user ? (
         <>
           <Navigation />
-          <Routes />
+          <Routes
+            obj={editItem}
+            players={players}
+            setPlayers={setPlayers}
+            setEditItem={setEditItem}
+            user={user}
+          />
         </>
       ) : (
         <SignIn user={user} />
