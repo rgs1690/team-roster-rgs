@@ -1,6 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import {
-  Card, CardImg, CardBody, CardTitle, CardSubtitle,
+  Card,
+  CardImg,
+  CardBody,
+  CardTitle,
+  CardSubtitle,
+  Button,
 } from 'reactstrap';
 import { getAllPlayers } from '../api/data/playersData';
 
@@ -31,6 +36,8 @@ export default function Team() {
               <CardSubtitle tag="h6" className="mb-2 text-muted">
                 {player.position}
               </CardSubtitle>
+              <Button color="primary">Edit</Button>
+              <Button color="danger">Delete</Button>
             </CardBody>
           </Card>
         </div>
