@@ -1,18 +1,32 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { createPlayer } from '../api/data/playersData';
+import { getAllPlayers, createPlayer } from '../api/data/playersData';
 
 const initialState = {
   imageUrl: '',
   name: '',
   position: '',
 };
-export default function NewPlayerForm({ obj = {}, setPlayers, setEditItem }) {
+export default function NewPlayerForm({
+  obj = {},
+  players,
+  setPlayers,
+  setEditItem,
+}) {
   const [formInput, setFormInput] = useState({
     name: obj.name || '',
     imageUrl: obj.imageUrl || '',
     position: obj.position || '',
   });
+  useEffect(() => {
+    let isMounted = true;
+    getAllPlayers().then((playerArray) => {
+      if (isMounted) setPlayers(playerArray);
+    });
+    return () => {
+      isMounted = false;
+    };
+  }, [players]);
   const handleChange = (e) => {
     setFormInput((prevState) => ({
       ...prevState,
@@ -25,8 +39,8 @@ export default function NewPlayerForm({ obj = {}, setPlayers, setEditItem }) {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    createPlayer(formInput).then((players) => {
-      setPlayers(players);
+    createPlayer(formInput).then((playersArray) => {
+      setPlayers(playersArray);
       resetForm();
     });
   };
@@ -92,6 +106,7 @@ NewPlayerForm.propTypes = {
     position: PropTypes.string,
     uid: PropTypes.string,
   }),
+  players: PropTypes.arrayOf(PropTypes.object).isRequired,
   setPlayers: PropTypes.func.isRequired,
   setEditItem: PropTypes.func.isRequired,
 };
