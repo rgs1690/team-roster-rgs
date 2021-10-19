@@ -11,3 +11,5 @@ export default function SignIn() {
     </div>
   );
 }
+
+// add loading instance for when user is null
