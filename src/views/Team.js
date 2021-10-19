@@ -4,8 +4,14 @@ import { getAllPlayers } from '../api/data/playersData';
 export default function Team() {
   const [players, setPlayers] = useState([]);
   useEffect(() => {
-    getAllPlayers().then(setPlayers);
-  }, []);
+    let isMounted = true;
+    getAllPlayers().then((playerArray) => {
+      if (isMounted) setPlayers(playerArray);
+    });
+    return () => {
+      isMounted = false;
+    };
+  }, [players]);
   return (
     <div>
       {players.map((player) => (

@@ -19,17 +19,6 @@ export default function NewPlayerForm({ obj = {}, setPlayers, setEditItem }) {
       [e.target.name]: e.target.value,
     }));
   };
-  //   useEffect(() => {
-  //     if (obj.firebaseKey) {
-  //       setFormInput({
-  //         name: obj.name,
-  //         firebaseKey: obj.firebaseKey,
-  //         imageUrl: obj.imageUrl,
-  //         position: obj.position,
-  //         uid: obj.uid,
-  //       });
-  //     }
-  //   }, [obj]);
   const resetForm = () => {
     setFormInput({ ...initialState });
     setEditItem({});
