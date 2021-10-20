@@ -1,22 +1,33 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useHistory } from 'react-router-dom';
-import { createPlayer } from '../api/data/playersData';
+import { createPlayer, updatePlayer } from '../api/data/playersData';
 
 const initialState = {
   imageUrl: '',
   name: '',
   position: '',
+  uid: '',
 };
-export default function NewPlayerForm({ obj = {}, setEditItem, user }) {
-  const [formInput, setFormInput] = useState({
-    name: obj.name || '',
-    imageUrl: obj.imageUrl || '',
-    position: obj.position || '',
-    uid: obj.uid || '',
-  });
+export default function NewPlayerForm({
+  player,
+  setPlayers,
+  setEditItem,
+  user,
+}) {
+  const [formInput, setFormInput] = useState(initialState);
   const history = useHistory();
-
+  useEffect(() => {
+    if (player.firebaseKey) {
+      setFormInput({
+        name: player.name,
+        firebaseKey: player.firebaseKey,
+        position: player.position,
+        imageUrl: player.imageUrl,
+        uid: player.uid,
+      });
+    }
+  }, [player]);
   const handleChange = (e) => {
     setFormInput((prevState) => ({
       ...prevState,
@@ -29,10 +40,17 @@ export default function NewPlayerForm({ obj = {}, setEditItem, user }) {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    createPlayer({ ...formInput, uid: user.uid }).then(() => {
-      resetForm();
-      history.push('/team');
-    });
+    if (player.firebaseKey) {
+      updatePlayer(formInput).then((players) => {
+        setPlayers(players);
+        resetForm();
+      });
+    } else {
+      createPlayer({ ...formInput, uid: user.uid }).then(() => {
+        resetForm();
+        history.push('/team');
+      });
+    }
   };
   return (
     <>
@@ -81,7 +99,7 @@ export default function NewPlayerForm({ obj = {}, setEditItem, user }) {
         </label>
         <span className="input-group-btn">
           <button className="btn btn-success submit" type="submit">
-            SUBMIT
+            {player.firebaseKey ? 'UPDATE' : 'SUBMIT'}
           </button>
         </span>
       </form>
@@ -89,16 +107,16 @@ export default function NewPlayerForm({ obj = {}, setEditItem, user }) {
   );
 }
 NewPlayerForm.propTypes = {
-  obj: PropTypes.shape({
+  player: PropTypes.shape({
     name: PropTypes.string,
     firebaseKey: PropTypes.string,
     imageUrl: PropTypes.string,
     position: PropTypes.string,
     uid: PropTypes.string,
-  }),
+  }).isRequired,
+  setPlayers: PropTypes.func.isRequired,
   setEditItem: PropTypes.func.isRequired,
   user: PropTypes.shape({
     uid: PropTypes.string,
   }).isRequired,
 };
-NewPlayerForm.defaultProps = { obj: {} };

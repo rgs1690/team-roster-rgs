@@ -4,6 +4,7 @@ import 'firebase/auth';
 import SignIn from '../views/SignIn';
 import Navigation from '../components/Navigation';
 import Routes from '../routes';
+import { getAllPlayers } from '../api/data/playersData';
 
 function Initialize() {
   const [user, setUser] = useState(null);
@@ -20,6 +21,7 @@ function Initialize() {
           user: authed.email.split('@')[0],
         };
         setUser(userInfoObj);
+        getAllPlayers(userInfoObj.uid).then(setPlayers);
       } else if (user || user === null) {
         setUser(false);
       }
@@ -32,7 +34,7 @@ function Initialize() {
         <>
           <Navigation />
           <Routes
-            obj={editItem}
+            player={editItem}
             players={players}
             setPlayers={setPlayers}
             setEditItem={setEditItem}
