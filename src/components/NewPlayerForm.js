@@ -1,32 +1,22 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { getAllPlayers, createPlayer } from '../api/data/playersData';
+import { useHistory } from 'react-router-dom';
+import { createPlayer } from '../api/data/playersData';
 
 const initialState = {
   imageUrl: '',
   name: '',
   position: '',
 };
-export default function NewPlayerForm({
-  obj = {},
-  players,
-  setPlayers,
-  setEditItem,
-}) {
+export default function NewPlayerForm({ obj = {}, setEditItem, user }) {
   const [formInput, setFormInput] = useState({
     name: obj.name || '',
     imageUrl: obj.imageUrl || '',
     position: obj.position || '',
+    uid: obj.uid || '',
   });
-  useEffect(() => {
-    let isMounted = true;
-    getAllPlayers().then((playerArray) => {
-      if (isMounted) setPlayers(playerArray);
-    });
-    return () => {
-      isMounted = false;
-    };
-  }, [players]);
+  const history = useHistory();
+
   const handleChange = (e) => {
     setFormInput((prevState) => ({
       ...prevState,
@@ -39,9 +29,9 @@ export default function NewPlayerForm({
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    createPlayer(formInput).then((playersArray) => {
-      setPlayers(playersArray);
+    createPlayer({ ...formInput, uid: user.uid }).then(() => {
       resetForm();
+      history.push('/team');
     });
   };
   return (
@@ -106,8 +96,9 @@ NewPlayerForm.propTypes = {
     position: PropTypes.string,
     uid: PropTypes.string,
   }),
-  players: PropTypes.arrayOf(PropTypes.object).isRequired,
-  setPlayers: PropTypes.func.isRequired,
   setEditItem: PropTypes.func.isRequired,
+  user: PropTypes.shape({
+    uid: PropTypes.string,
+  }).isRequired,
 };
 NewPlayerForm.defaultProps = { obj: {} };
