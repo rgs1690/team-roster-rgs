@@ -3,9 +3,9 @@ import firebaseConfig from '../apiKeys';
 
 const baseURL = firebaseConfig.databaseURL;
 
-const getAllPlayers = () => new Promise((resolve, reject) => {
+const getAllPlayers = (uid) => new Promise((resolve, reject) => {
   axios
-    .get(`${baseURL}/players.json`)
+    .get(`${baseURL}/players.json?orderBy="uid"&equalTo="${uid}"`)
     .then((response) => resolve(Object.values(response.data)))
     .catch(reject);
 });
@@ -18,7 +18,7 @@ const createPlayer = (obj) => new Promise((resolve, reject) => {
       axios
         .patch(`${baseURL}/players/${firebaseKey}.json`, { firebaseKey })
         .then(() => {
-          getAllPlayers().then(resolve);
+          getAllPlayers(obj.uid).then(resolve);
         });
     })
     .catch(reject);

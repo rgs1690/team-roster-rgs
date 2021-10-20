@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
+
 import {
   Card,
   CardImg,
@@ -9,21 +11,21 @@ import {
 } from 'reactstrap';
 import { getAllPlayers } from '../api/data/playersData';
 
-export default function Team() {
+export default function Team({ user }) {
   const [players, setPlayers] = useState([]);
   useEffect(() => {
     let isMounted = true;
-    getAllPlayers().then((playerArray) => {
+    getAllPlayers(user.uid).then((playerArray) => {
       if (isMounted) setPlayers(playerArray);
     });
     return () => {
       isMounted = false;
     };
-  }, [players]);
+  }, []);
   return (
     <div>
       {players.map((player) => (
-        <div>
+        <div key={player.firebaseKey}>
           <Card>
             <CardImg
               top
@@ -45,3 +47,8 @@ export default function Team() {
     </div>
   );
 }
+Team.propTypes = {
+  user: PropTypes.shape({
+    uid: PropTypes.string,
+  }).isRequired,
+};
