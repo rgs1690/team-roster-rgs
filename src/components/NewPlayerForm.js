@@ -8,13 +8,7 @@ const initialState = {
   name: '',
   position: '',
 };
-export default function NewPlayerForm({
-  obj = {},
-  // players,
-  // setPlayers,
-  setEditItem,
-  user,
-}) {
+export default function NewPlayerForm({ obj = {}, setEditItem, user }) {
   const [formInput, setFormInput] = useState({
     name: obj.name || '',
     imageUrl: obj.imageUrl || '',
@@ -102,8 +96,6 @@ NewPlayerForm.propTypes = {
     position: PropTypes.string,
     uid: PropTypes.string,
   }),
-  // players: PropTypes.arrayOf(PropTypes.object).isRequired,
-  // setPlayers: PropTypes.func.isRequired,
   setEditItem: PropTypes.func.isRequired,
   user: PropTypes.shape({
     uid: PropTypes.string,
