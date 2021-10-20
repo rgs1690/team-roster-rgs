@@ -23,5 +23,21 @@ const createPlayer = (obj) => new Promise((resolve, reject) => {
     })
     .catch(reject);
 });
+const deletePlayer = (firebaseKey, uid) => new Promise((resolve, reject) => {
+  axios
+    .delete(`${baseURL}/players/${firebaseKey}.json`)
+    .then(() => {
+      getAllPlayers(uid).then(resolve);
+    })
+    .catch(reject);
+});
+const updatePlayer = (obj) => new Promise((resolve, reject) => {
+  axios
+    .patch(`${baseURL}/players/${obj.firebaseKey}.json`, obj)
+    .then(() => getAllPlayers(obj.uid).then(resolve))
+    .catch(reject);
+});
 
-export { getAllPlayers, createPlayer };
+export {
+  getAllPlayers, createPlayer, deletePlayer, updatePlayer,
+};
