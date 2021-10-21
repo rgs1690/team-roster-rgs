@@ -19,6 +19,7 @@ export default function Routes({
           path="/"
           component={() => (
             <Team
+              user={user}
               players={players}
               setPlayers={setPlayers}
               setEditItem={setEditItem}
@@ -30,6 +31,7 @@ export default function Routes({
           path="/team"
           component={() => (
             <Team
+              user={user}
               players={players}
               setPlayers={setPlayers}
               setEditItem={setEditItem}
