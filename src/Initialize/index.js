@@ -9,7 +9,7 @@ import { getAllPlayers } from '../api/data/playersData';
 function Initialize() {
   const [user, setUser] = useState(null);
   const [players, setPlayers] = useState([]);
-  const [editItem, setEditItem] = useState({});
+  const [player, setEditItem] = useState({});
 
   useEffect(() => {
     firebase.auth().onAuthStateChanged((authed) => {
@@ -34,7 +34,7 @@ function Initialize() {
         <>
           <Navigation />
           <Routes
-            player={editItem}
+            player={player}
             players={players}
             setPlayers={setPlayers}
             setEditItem={setEditItem}

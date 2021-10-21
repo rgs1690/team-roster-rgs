@@ -44,9 +44,11 @@ export default function NewPlayerForm({
       updatePlayer(formInput).then((players) => {
         setPlayers(players);
         resetForm();
+        history.push('/team');
       });
     } else {
-      createPlayer({ ...formInput, uid: user.uid }).then(() => {
+      createPlayer({ ...formInput, uid: user.uid }).then((players) => {
+        setPlayers(players);
         resetForm();
         history.push('/team');
       });
