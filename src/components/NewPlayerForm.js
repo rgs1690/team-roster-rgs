@@ -48,7 +48,7 @@ export default function NewPlayerForm({
     }));
   };
   const resetForm = () => {
-    setFormInput({ initialState });
+    setFormInput({ ...initialState });
     setEditItem({ initialState });
   };
   const handleSubmit = (e) => {
