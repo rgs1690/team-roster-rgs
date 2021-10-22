@@ -1,13 +1,24 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
 import Players from '../components/Players';
 
+const TitleStyle = styled.div`
+  h1 {
+    color: white;
+    margin-bottom: 50px;
+    margin-left: 120px;
+    font-size: 70px;
+  }
+`;
 export default function Team({
   players, setPlayers, setEditItem, user,
 }) {
   return (
     <>
-      <h1>TEAM</h1>
+      <TitleStyle>
+        <h1>THE TEAM</h1>
+      </TitleStyle>
       {players.map((player) => (
         <Players
           key={player.firebaseKey}

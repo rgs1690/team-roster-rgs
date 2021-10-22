@@ -1,22 +1,36 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
 import { useHistory } from 'react-router-dom';
 import {
-  Card,
-  CardImg,
-  CardBody,
-  CardTitle,
-  CardSubtitle,
-  Button,
+  Card, CardImg, CardBody, CardTitle, CardSubtitle,
 } from 'reactstrap';
 import { deletePlayer, getAllPlayers } from '../api/data/playersData';
 
+const PlayersStyle = styled.div`
+  margin-left: 40px;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  flex-wrap: wrap;
+  img {
+    width: 700px;
+    height: 600px;
+    object-fit: cover;
+  }
+  button {
+    margin: 10px;
+    width: 150px;
+    height: 50px;
+  }
+`;
+const ButtonStyle = styled.div`
+  display: flex;
+  justify-content: center;
+`;
+
 export default function Players({
-  player,
-  setPlayers,
-  setEditItem,
-  user,
-  players,
+  player, setPlayers, setEditItem, user,
 }) {
   const history = useHistory();
 
@@ -38,26 +52,57 @@ export default function Players({
     return () => {
       isMounted = false;
     };
-  }, [players]);
+  }, []);
+  // const cardStyle = {
+  //   backgroundColor: 'yellow',
+  //   marginBottom: '25px;',
+  // };
 
   return (
-    <div>
-      <Card>
-        <CardImg top width="25%" src={player.imageUrl} alt="Card image cap" />
-        <CardBody>
-          <CardTitle tag="h5">{player.name}</CardTitle>
-          <CardSubtitle tag="h6" className="mb-2 text-muted">
-            {player.position}
-          </CardSubtitle>
-          <Button color="primary" onClick={() => handleClick('update')}>
-            Edit
-          </Button>
-          <Button onClick={() => handleClick('delete')} color="danger">
-            Delete
-          </Button>
-        </CardBody>
-      </Card>
-    </div>
+    <>
+      <PlayersStyle>
+        <div className="playerCard">
+          <Card style={{ marginBottom: '20px' }}>
+            <CardImg
+              top
+              width="25%"
+              src={player.imageUrl}
+              alt="Card image cap"
+            />
+            <CardBody>
+              <CardTitle style={{ textAlign: 'center' }} tag="h5">
+                {player.name}
+              </CardTitle>
+              <CardSubtitle
+                style={{ textAlign: 'center' }}
+                tag="h6"
+                className="mb-2 text-muted"
+              >
+                {player.position}
+              </CardSubtitle>
+              <ButtonStyle>
+                <button
+                  type="button"
+                  className="btn btn-primary"
+                  color="primary"
+                  onClick={() => handleClick('update')}
+                >
+                  Edit
+                </button>
+                <button
+                  type="button"
+                  className="btn btn-danger"
+                  onClick={() => handleClick('delete')}
+                  color="danger"
+                >
+                  Delete
+                </button>
+              </ButtonStyle>
+            </CardBody>
+          </Card>
+        </div>
+      </PlayersStyle>
+    </>
   );
 }
 Players.propTypes = {
@@ -68,7 +113,7 @@ Players.propTypes = {
     position: PropTypes.string,
     uid: PropTypes.string,
   }).isRequired,
-  players: PropTypes.arrayOf(PropTypes.object).isRequired,
+  //   players: PropTypes.arrayOf(PropTypes.object).isRequired,
   setPlayers: PropTypes.func.isRequired,
   setEditItem: PropTypes.func,
   user: PropTypes.shape({
