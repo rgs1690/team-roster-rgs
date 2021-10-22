@@ -8,14 +8,14 @@ import {
 import { deletePlayer, getAllPlayers } from '../api/data/playersData';
 
 const PlayersStyle = styled.div`
-  margin-left: 40px;
+  margin-left: 10px;
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
   flex-wrap: wrap;
   img {
-    width: 700px;
-    height: 600px;
+    width: 500px;
+    height: 400px;
     object-fit: cover;
   }
   button {

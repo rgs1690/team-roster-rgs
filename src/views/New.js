@@ -7,8 +7,8 @@ const TitleStyle = styled.div`
   h1 {
     color: white;
     margin-bottom: 50px;
-    margin-left: 100px;
-    font-size: 70px;
+    margin-left: 60px;
+    font-size: 40px;
   }
 `;
 export default function New({
