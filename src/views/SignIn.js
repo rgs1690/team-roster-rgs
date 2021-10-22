@@ -6,14 +6,16 @@ import { signInUser } from '../api/auth';
 const TitleStyle = styled.div`
   h1 {
     color: white;
+    margin-top: 0px;
     margin-bottom: 50px;
     text-align: center;
-    font-size: 70px;
+    font-size: 30px;
   }
   button {
-    width: 300px;
-    height: 100px;
-    font-size: 40px;
+    margin-top: 0px;
+    width: 200px;
+    height: 90px;
+    font-size: 25px;
   }
 `;
 export default function SignIn({ user }) {

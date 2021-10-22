@@ -13,15 +13,15 @@ const FormStyle = styled.div`
   }
   .input-group {
     flex-shrink: 2;
-    width: 50em;
-    margin-bottom: 4em;
-    margin-left: 30px;
+    width: 500px;
+    margin-bottom: 10px;
+    margin-left: 10px;
   }
   button {
     height: 100px;
     width: 350px;
     font-size: 30px;
-    margin-left: 150px;
+    margin-left: 50px;
   }
 `;
 const initialState = {

@@ -11,8 +11,8 @@ const NavigationStyle = styled.div`
 
   button {
     margin: 10px;
-    width: 300px;
-    height: 150px;
+    width: 200px;
+    height: 100px;
     color: navy;
     border: solid 9px white;
   }
