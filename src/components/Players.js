@@ -12,11 +12,7 @@ import {
 import { deletePlayer, getAllPlayers } from '../api/data/playersData';
 
 export default function Players({
-  player,
-  setPlayers,
-  setEditItem,
-  user,
-  players,
+  player, setPlayers, setEditItem, user,
 }) {
   const history = useHistory();
 
@@ -38,7 +34,7 @@ export default function Players({
     return () => {
       isMounted = false;
     };
-  }, [players]);
+  }, []);
 
   return (
     <div>
@@ -68,7 +64,7 @@ Players.propTypes = {
     position: PropTypes.string,
     uid: PropTypes.string,
   }).isRequired,
-  players: PropTypes.arrayOf(PropTypes.object).isRequired,
+  //   players: PropTypes.arrayOf(PropTypes.object).isRequired,
   setPlayers: PropTypes.func.isRequired,
   setEditItem: PropTypes.func,
   user: PropTypes.shape({

@@ -10,7 +10,7 @@ export default function Navigation() {
     <div className="text-center mb-3">
       <ButtonGroup size="lg">
         <button
-          onClick={() => history.push('/team')}
+          onClick={() => history.push('/')}
           type="button"
           className="btn btn-light border border-dark"
         >

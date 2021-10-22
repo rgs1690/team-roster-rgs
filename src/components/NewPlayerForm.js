@@ -35,22 +35,21 @@ export default function NewPlayerForm({
     }));
   };
   const resetForm = () => {
-    setFormInput({ ...initialState });
-    setEditItem({});
+    setFormInput({ initialState });
+    setEditItem({ initialState });
   };
   const handleSubmit = (e) => {
     e.preventDefault();
     if (player.firebaseKey) {
-      updatePlayer(formInput).then((players) => {
-        setPlayers(players);
-        resetForm();
-        history.push('/team');
-      });
+      updatePlayer(formInput).then(setPlayers);
+      // setPlayers(players);
+      resetForm();
+      history.push('/');
     } else {
       createPlayer({ ...formInput, uid: user.uid }).then((players) => {
         setPlayers(players);
         resetForm();
-        history.push('/team');
+        history.push('/');
       });
     }
   };
