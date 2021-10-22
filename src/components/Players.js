@@ -8,6 +8,7 @@ import {
 import { deletePlayer, getAllPlayers } from '../api/data/playersData';
 
 const PlayersStyle = styled.div`
+  margin-left: 40px;
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;

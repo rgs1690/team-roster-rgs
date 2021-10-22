@@ -9,11 +9,19 @@ const FormStyle = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
+    margin-top: 75px;
   }
   .input-group {
     flex-shrink: 2;
     width: 50em;
     margin-bottom: 4em;
+    margin-left: 30px;
+  }
+  button {
+    height: 100px;
+    width: 350px;
+    font-size: 30px;
+    margin-left: 150px;
   }
 `;
 const initialState = {

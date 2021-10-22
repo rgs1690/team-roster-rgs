@@ -1,13 +1,24 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
 import NewPlayerForm from '../components/NewPlayerForm';
 
+const TitleStyle = styled.div`
+  h1 {
+    color: white;
+    margin-bottom: 50px;
+    margin-left: 100px;
+    font-size: 70px;
+  }
+`;
 export default function New({
   player, setPlayers, setEditItem, user,
 }) {
   return (
     <>
-      <h1> Add A Player</h1>
+      <TitleStyle>
+        <h1> Add A Player</h1>
+      </TitleStyle>
       <NewPlayerForm
         player={player}
         setPlayers={setPlayers}
