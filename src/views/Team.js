@@ -7,7 +7,6 @@ export default function Team({
 }) {
   return (
     <>
-      <h1>TEAM</h1>
       {players.map((player) => (
         <Players
           key={player.firebaseKey}

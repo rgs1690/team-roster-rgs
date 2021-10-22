@@ -1,8 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
 import { useHistory } from 'react-router-dom';
 import { createPlayer, updatePlayer } from '../api/data/playersData';
 
+const FormStyle = styled.div`
+  form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .input-group {
+    flex-shrink: 2;
+    width: 50em;
+    margin-bottom: 4em;
+  }
+`;
 const initialState = {
   imageUrl: '',
   name: '',
@@ -55,55 +68,57 @@ export default function NewPlayerForm({
   };
   return (
     <>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="name">
-          <div className="input-group">
-            <input
-              className="form-control form-control-lg me-1"
-              type="text"
-              name="name"
-              id="name"
-              placeholder="Enter Name"
-              value={formInput.name}
-              onChange={handleChange}
-              required
-            />
-          </div>
-        </label>
-        <label htmlFor="imageUrl">
-          <div className="input-group">
-            <input
-              className="form-control form-control-lg me-1"
-              type="url"
-              name="imageUrl"
-              id="imageUrl"
-              placeholder="Enter Image Url"
-              value={formInput.imageUrl}
-              onChange={handleChange}
-              required
-            />
-          </div>
-        </label>
-        <label htmlFor="position">
-          <div className="input-group">
-            <input
-              className="form-control form-control-lg me-1"
-              type="text"
-              name="position"
-              id="position"
-              placeholder="Enter Position"
-              value={formInput.position}
-              onChange={handleChange}
-              required
-            />
-          </div>
-        </label>
-        <span className="input-group-btn">
-          <button className="btn btn-success submit" type="submit">
-            {player.firebaseKey ? 'UPDATE' : 'SUBMIT'}
-          </button>
-        </span>
-      </form>
+      <FormStyle>
+        <form onSubmit={handleSubmit}>
+          <label htmlFor="name">
+            <div className="input-group">
+              <input
+                className="form-control form-control-lg me-1"
+                type="text"
+                name="name"
+                id="name"
+                placeholder="Enter Name"
+                value={formInput.name}
+                onChange={handleChange}
+                required
+              />
+            </div>
+          </label>
+          <label htmlFor="imageUrl">
+            <div className="input-group">
+              <input
+                className="form-control form-control-lg me-1"
+                type="url"
+                name="imageUrl"
+                id="imageUrl"
+                placeholder="Enter Image Url"
+                value={formInput.imageUrl}
+                onChange={handleChange}
+                required
+              />
+            </div>
+          </label>
+          <label htmlFor="position">
+            <div className="input-group">
+              <input
+                className="form-control form-control-lg me-1"
+                type="text"
+                name="position"
+                id="position"
+                placeholder="Enter Position"
+                value={formInput.position}
+                onChange={handleChange}
+                required
+              />
+            </div>
+          </label>
+          <span className="input-group-btn">
+            <button className="btn btn-success submit" type="submit">
+              {player.firebaseKey ? 'UPDATE' : 'SUBMIT'}
+            </button>
+          </span>
+        </form>
+      </FormStyle>
     </>
   );
 }

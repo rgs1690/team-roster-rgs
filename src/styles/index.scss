@@ -2,5 +2,9 @@
 @import 'globals';
 
 body {
-  background-color: $favColor !important;
+  background: url(https://www.sgclark.com/blog/wp-content/uploads/2020/12/tv_ted_lasso_afc_richmond_home_offcenter.png) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
