@@ -2,7 +2,7 @@
 
 This app is a sports roster for the AFC Richmond team from the TV show Ted Lasso. 
 
-[View App](rgs-team-roster.netlify.app)
+[View App](https://rgs-team-roster.netlify.app/)
 
 ## Get Started 
 ````
