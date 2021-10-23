@@ -21,7 +21,7 @@ $ cd team-roster-rgs
 - Users can edit any of the information displayed on the card.
 - Users can delete any player and they will be removed from the DOM.
 
-## Video Walkthrough of APP NAME 
+## Video Walkthrough of AFC RICHMOND (TED LASSO) TEAM ROSTER
 https://www.loom.com/share/f5d32113596b479ea8485fe28962e6fe 
 
 ## Relevant Links 
