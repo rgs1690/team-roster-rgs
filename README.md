@@ -20,9 +20,9 @@ $ cd team-roster-rgs
 - Once the user enters all their players they will be displayed with their name, pictures, and position in a card displayed on the Team view.
 - Users can edit any of the information displayed on the card.
 - Users can delete any player and they will be removed from the DOM.
-<!-- 
-## Video Walkthrough of APP NAME <!-- A loom link is sufficient -->
-https://www.loom.com/share/829b90d831ea441ba2db6bea724af210 -->
+
+## Video Walkthrough of APP NAME 
+https://www.loom.com/share/f5d32113596b479ea8485fe28962e6fe 
 
 ## Relevant Links 
 - [Check out the deployed site](https://rgs-team-roster.netlify.app/)
