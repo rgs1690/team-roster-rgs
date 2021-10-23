@@ -10,16 +10,16 @@ $ git clone git@github.com:rgs1690/team-roster-rgs.git
 $ cd team-roster-rgs
 
 ````
-
 ## About the User 
 - The ideal user for this application is any fan of Ted Lasso. 
 - They want to keep track of their favorite characters in the show. 
 
 ## Features 
-- Users can add players after navigating to the add new player form after clicking the add player button.
-- Once the user enters all their players they will be displayed with their name, pictures, and position in a card displayed on the Team view.
+- After clicking 'Add Player' in the navigation, the user will be brought to a form where they can enter the player's information. 
+- Once the user enters all of their player's information and clicked submit, they will be brought back to the Team view and the new card will be displayed with the new player's name, picture, and position.
 - Users can edit any of the information displayed on the card.
 - Users can delete any player and they will be removed from the DOM.
+- This app is authenticated using google and firebase so only the user can CRUD on their players. 
 
 ## Video Walkthrough of AFC RICHMOND (TED LASSO) TEAM ROSTER
 https://www.loom.com/share/f5d32113596b479ea8485fe28962e6fe 
